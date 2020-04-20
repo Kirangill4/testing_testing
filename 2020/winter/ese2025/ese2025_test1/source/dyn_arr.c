@@ -22,8 +22,19 @@
 int comparo_fName(const void *pA, const void *pB)
 {
 
-	// PROBLEM #3: complete the code for this function
-	//	       NOTE: PLEASE COMMIT CHANGES ONCE YOUR DONE THIS FUNCTION
+	// SOLUTION FOR PROBLEM #3 :
+	
+	// TO EXTRACT THE RECORD OF STUDENT
+	stuDA_t student_A = *((stuDA_t*)pA);
+	stuDA_t student_B = *((stuDA_t*)pB);
+	
+	//TO GET THE STUDENT'S FAMILY NAME
+	char *fName_A = student_A.data.fName;
+	char *fName_B = student_B.data.fName;
+	
+	//TO RETURN STRING BY THE FUNCTION "STRCMP" USING DATA(fName_A) AND (fName_B)
+	return strcmp(fName_A, fName_B);
+	
 }
 
 /*
@@ -49,8 +60,18 @@ int comparo_gName(const void *pA, const void *pB)
  */
 int comparo_grade(const void *pA, const void *pB)
 {
-	// PROBLEM #4: complete the code for this function
-	//	       NOTE: PLEASE COMMIT CHANGES ONCE YOUR DONE THIS FUNCTION
+	// SOLUTION FOR PROBLEM #4 :
+	
+	// TO EXTRACT THE RECORD OF STUDENT
+	stuDA_t student_A = *((stuDA_t*)pA);
+	stuDA_t student_B = *((stuDA_t*)pB);
+	
+	//TO GET THE STUDENT'S GRADE FOR COMPARISON
+	float *grade_A = student_A.data.grade;
+	float *grade_B = student_B.data.grade;
+	
+	//TO RETURN STRING BY THE FUNCTION "STRCMP" USING DATA(grade_A) AND (grade_B)
+	return strcmp(grade_A, grade_B);
 }
 
 /*
@@ -82,8 +103,7 @@ stuDA_t* formDynamicArray(stuLL_t *pHEAD_LL, size_t student_count)
 stuDA_t* sortDynamicArray(stuDA_t *pHEAD, const sort_t sort_type,
 		const size_t array_size)
 {
-	// PROBLEM #5: complete the code for this function
-	//	       NOTE: PLEASE COMMIT CHANGES ONCE YOUR DONE THIS FUNCTION
+	// SOLUTION FOR PROBLEM #5
 
 	switch (sort_type)
 	{
@@ -91,9 +111,11 @@ stuDA_t* sortDynamicArray(stuDA_t *pHEAD, const sort_t sort_type,
 		qsort(pHEAD, array_size, sizeof(stuRec_t), comparo_fName);
 		break;
 	case gNamesort:
-		// fill the code here for Part a)
+		qsort(pHEAD, array_size, sizeof(stuRec_t), comparo_gName);
+		break;
 	case gradesort:
-		// fill the code here for Part b)
+		qsort(pHEAD, array_size, sizeof(stuRec_t), comparo_grade);
+		break;
 	}
 	return pHEAD;
 }
